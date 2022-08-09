@@ -1,0 +1,7 @@
+# General ignores
+venv/
+.idea/
+**/.DS_Store
+
+# YOLOv3-specific files (about 200MB)
+data/yolov3.weights
