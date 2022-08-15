@@ -19,7 +19,7 @@ class InfoPanel(wx.Panel):
         self.emulateNao = wx.CheckBox(self, label='Emulate NAO resolution')
         self.bwImage = wx.CheckBox(self, label='Use BW image')
 
-        self.objectList = wx.ListCtrl(self, size=(-1, 200), style=wx.LC_REPORT | wx.BORDER_SUNKEN)
+        self.objectList = wx.ListCtrl(self, size=(-1, 500), style=wx.LC_REPORT | wx.BORDER_SUNKEN)
         self.objectList.InsertColumn(0, 'Class')
         self.objectList.InsertColumn(1, 'Confidence')
         self.objectList.InsertColumn(2, 'Row')
@@ -45,6 +45,7 @@ class InfoPanel(wx.Panel):
     def check_refresh(self):
         if not self.should_refresh:
             wx.CallLater(50, self.check_refresh)
+            return
 
         self.propTime.SetLabel(f'Forward propagation: {self.object_detector.propagationTime * 1000:.0f}ms')
         self.extractionTime.SetLabel(f'Box extraction: {self.object_detector.extractionTime * 1000:.0f}ms')

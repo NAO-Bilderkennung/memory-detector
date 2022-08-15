@@ -13,6 +13,7 @@ class ObjectDetector:
         self.boundingBoxes = []
 
         self.image = None
+        self.drawn_image = None
 
         self.w = w
         self.h = h
@@ -47,8 +48,12 @@ class ObjectDetector:
         self.boxes, self.confidences, self.class_ids = self.extract_results()
         te = time.time()
 
+        self.drawn_image = self.draw_boxes()
+        td = time.time()
+
         self.propagationTime = tf - tf0
         self.extractionTime = te - tf
+        self.drawingTime = td - te
 
     def extract_results(self):
         boxes = []
@@ -76,8 +81,6 @@ class ObjectDetector:
         return boxes, confidences, class_ids
 
     def draw_boxes(self):
-        t0 = time.time()
-
         indices = dnn.NMSBoxes(self.boxes, self.confidences, 0.5, 0.4)
 
         if len(indices) > 0:
@@ -95,9 +98,5 @@ class ObjectDetector:
                 putText(self.image, label, (xBox, yBox - 5), FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
 
                 self.boundingBoxes.append(((xBox, yBox), (wBox, hBox), self.classes[class_id], self.confidences[i]))
-
-        t = time.time()
-
-        self.drawingTime = t - t0
 
         return self.image

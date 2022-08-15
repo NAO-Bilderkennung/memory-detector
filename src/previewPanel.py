@@ -17,16 +17,14 @@ class PreviewPanel(wx.Panel):
 
     # noinspection PyUnusedLocal
     def on_paint(self, event):
-        dc = wx.PaintDC(self)
+        if self.should_refresh and self.object_detector.drawn_image is not None:
+            dc = wx.PaintDC(self)
 
-        if self.should_refresh:
-            boxed_image = self.object_detector.draw_boxes()
-
-            rgb_image = cvtColor(boxed_image, COLOR_BGR2RGB)
+            rgb_image = cvtColor(self.object_detector.drawn_image, COLOR_BGR2RGB)
 
             dc.DrawBitmap(wx.Bitmap.FromBuffer(self.w, self.h, rgb_image), 0, 0)
 
     def check_refresh(self):
-        self.on_paint(None)
+        self.Refresh(False)
 
         wx.CallLater(50, self.check_refresh)
