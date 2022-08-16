@@ -14,6 +14,7 @@ class InfoPanel(wx.Panel):
         self.drawingTime = wx.StaticText(self, label='Drawing time: TBD')
         self.gridTime = wx.StaticText(self, label='Grid finding time: TBD')
 
+        self.disableGridFinder = wx.CheckBox(self, label='Disable grid finder')
         self.useTestImage = wx.CheckBox(self, label='Use test image')
         self.useTestImage.SetValue(True)
         self.emulateNao = wx.CheckBox(self, label='Emulate NAO resolution')
@@ -32,6 +33,7 @@ class InfoPanel(wx.Panel):
         sizer.Add(self.drawingTime)
         sizer.Add(self.gridTime)
         sizer.AddSpacer(10)
+        sizer.Add(self.disableGridFinder)
         sizer.Add(self.useTestImage)
         sizer.Add(self.emulateNao)
         sizer.Add(self.bwImage)

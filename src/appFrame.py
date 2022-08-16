@@ -81,7 +81,11 @@ class AppFrame(wx.Frame):
             self.previewPanel.w, self.previewPanel.h = w, h
 
             self.object_detector.detect(image)
-            self.grid_finder.calculate_grid_positions(self.object_detector.boundingBoxes)
+
+            if not self.infoPanel.disableGridFinder.IsChecked():
+                self.grid_finder.calculate_grid_positions(self.object_detector.boundingBoxes)
+            else:
+                self.grid_finder.grid = []
 
             self.previewPanel.should_refresh = True
             self.infoPanel.should_refresh = True
