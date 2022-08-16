@@ -5,6 +5,6 @@ from a video stream or test image and figure out their position on their playing
 proof-of-concept programs for a group paper written by four students at Berlin School of Economics and Law. Our goal is
 to make a [NAO Robot](https://en.wikipedia.org/wiki/Nao_(robot)) play Memory against a human opponent.
 
-Memory Detector can run on Windows, macOS and Linux, provided you have a Python version of at least 3.8 installed. The
-YOLOv3 weights, which are required to run the image detection can't be found, you can download them from within the
+Memory Detector can run on Windows, macOS and Linux, provided you have a Python version of at least 3.8 installed. If
+the YOLOv3 weights, which are required to run the image detection, can't be found you can download them from within the
 program.
